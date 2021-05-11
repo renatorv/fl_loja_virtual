@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Layout {
   static Widget render(BuildContext context, Widget child, {String title, Widget floatingActionButton, int bottomItemSelected}) {
@@ -7,8 +8,18 @@ class Layout {
       body: SafeArea(
         child: Stack(
           children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+            Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/fl-img.png'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            Center(
+              child: Text(
+                'You have pushed the button this many times:',
+              ),
             ),
             // Expanded(child: child),
           ],
@@ -21,14 +32,28 @@ class Layout {
           BottomNavigationBarItem(
             icon: Icon(Icons.wb_sunny, size: 30),
             label: 'Ínicio',
-            // title: Text('Ínicio'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.ac_unit, size: 30),
-            // title: Text('Compras'),
+            icon: FaIcon(FontAwesomeIcons.solidStar, size: 30),
             label: 'Compas',
           ),
+          BottomNavigationBarItem(
+            icon: FaIcon(FontAwesomeIcons.solidHeart, size: 30),
+            label: 'Favoritos',
+          ),
+          BottomNavigationBarItem(
+            icon: FaIcon(FontAwesomeIcons.signOutAlt, size: 30),
+            label: 'Sair',
+          ),
         ],
+        currentIndex: bottomItemSelected ?? 0,
+        selectedItemColor: (bottomItemSelected == null) ? Layout.dark(.3) : Layout.primaryLight(),
+        unselectedItemColor: Layout.dark(.3),
+        backgroundColor: Layout.light(),
+        type: BottomNavigationBarType.fixed,
+        onTap: (int i) {
+          print('Item :: $i');
+        },
       ),
     );
   }

@@ -20,7 +20,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-7 minutos
-git remote add origin https://github.com/renatorv/fl_loja_virtual.git
-git branch -M main
-git push -u origin main

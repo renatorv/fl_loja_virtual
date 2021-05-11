@@ -8,13 +8,11 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     var content = Column();
 
-    return Layout.render(
-      context,
-      content,
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () => null,
-      //   child: Icon(Icons.plus_one),
-      // ),
-    );
+    return Layout.render(context, content, bottomItemSelected: 0
+        // floatingActionButton: FloatingActionButton(
+        //   onPressed: () => null,
+        //   child: Icon(Icons.plus_one),
+        // ),
+        );
   }
 }
