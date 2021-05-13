@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        fontFamily: 'JosefinSans',
         primarySwatch: Colors.blue,
       ),
       initialRoute: HomePage.tag,

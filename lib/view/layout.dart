@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Layout {
-  static Widget render(BuildContext context, Widget child, {String title, Widget floatingActionButton, int bottomItemSelected}) {
+  static Widget render(BuildContext context, Widget child, {Widget floatingActionButton, int bottomItemSelected}) {
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -16,10 +16,44 @@ class Layout {
                 ),
               ),
             ),
-            Center(
-              child: Text(
-                'You have pushed the button this many times:',
-              ),
+            Column(
+              children: [
+                Container(
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(10, 20, 10, 20),
+                        child: FaIcon(
+                          FontAwesomeIcons.userCog,
+                          color: Layout.light(),
+                          size: 24,
+                        ),
+                      ),
+                      Expanded(
+                        child: Text(
+                          'James Baxter',
+                          style: Theme.of(context).textTheme.subtitle1.copyWith(
+                                color: Layout.light(),
+                                fontSize: 18,
+                                fontStyle: FontStyle.italic,
+                              ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(right: 20),
+                        child: FaIcon(
+                          FontAwesomeIcons.shoppingBag,
+                          color: Layout.primaryLight(),
+                          size: 24,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: child,
+                ),
+              ],
             ),
             // Expanded(child: child),
           ],
