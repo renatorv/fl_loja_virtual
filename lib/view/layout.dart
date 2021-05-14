@@ -3,7 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Layout {
-  static Widget render(BuildContext context, Widget child, {Widget floatingActionButton, int bottomItemSelected}) {
+  static Widget render(
+    BuildContext context,
+    Widget child, {
+    Widget floatingActionButton,
+    int bottomItemSelected,
+  }) {
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -50,9 +55,7 @@ class Layout {
                     ],
                   ),
                 ),
-                Expanded(
-                  child: child,
-                ),
+                Expanded(child: child),
               ],
             ),
             // Expanded(child: child),
