@@ -13,6 +13,7 @@ class Layout {
       body: SafeArea(
         child: Stack(
           children: <Widget>[
+            // IMAGEM FUNDO
             Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
@@ -21,9 +22,11 @@ class Layout {
                 ),
               ),
             ),
+            // CONTEUDO
             Column(
               children: [
                 Container(
+                  // LINHA CONTENDO O TOPO DO APP
                   child: Row(
                     children: [
                       Padding(
@@ -55,6 +58,7 @@ class Layout {
                     ],
                   ),
                 ),
+                // FILHO PASSADO COMO PARÂMETRO
                 Expanded(child: child),
               ],
             ),
