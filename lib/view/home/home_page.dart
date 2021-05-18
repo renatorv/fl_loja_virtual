@@ -1,5 +1,8 @@
+import 'package:fl_loja_virtual/view/home/roda_categoria.dart';
 import 'package:fl_loja_virtual/view/layout.dart';
 import 'package:flutter/material.dart';
+
+import '../layout.dart';
 
 class HomePage extends StatelessWidget {
   static String tag = 'home-page';
@@ -46,7 +49,10 @@ class HomePage extends StatelessWidget {
         ),
         Container(
           height: 90,
-          color: Colors.blue,
+          child: SingleChildScrollView(
+            physics: NeverScrollableScrollPhysics(),
+            child: RodaCategoria(),
+          ),
         ),
       ],
     );
