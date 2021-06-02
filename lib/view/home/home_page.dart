@@ -48,7 +48,7 @@ class HomePage extends StatelessWidget {
           ),
         ),
         Container(
-          height: 250,
+          height: 90,
           child: SingleChildScrollView(
             physics: NeverScrollableScrollPhysics(),
             child: RodaCategoria(),

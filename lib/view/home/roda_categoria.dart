@@ -1,9 +1,10 @@
 import 'dart:math';
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
-
 import '../layout.dart';
+
+// Identifica o lado que a roda deve girar
+enum SwypeDirection { left, right }
 
 class RodaCategoria extends StatefulWidget {
   @override
@@ -11,32 +12,41 @@ class RodaCategoria extends StatefulWidget {
 }
 
 class _RodaCategoriaState extends State<RodaCategoria> with SingleTickerProviderStateMixin {
+  // Controller da animação
   AnimationController _controller;
 
   // Para tween 1 => 360 graus
   // Para transform.rotate => pi * 2 => 360 graus
 
+  // Controlar o grau de giro por item
   double _startDeg = 0.0;
   double _endDeg = 0.0;
 
+  // Controle do lado que o usuário está arrastando
+  double _dragInitial = 0;
+
+  SwypeDirection _swypeDirection;
+
+  // Model (fixo) de item para serem impressos na roda
   final List<Map<String, dynamic>> items = const [
-    {"icon": Icons.favorite, "text": 'Estilo'},
-    {"icon": Icons.filter_drama, "text": 'Teen'},
-    {"icon": Icons.flight, "text": 'Viagem'},
-    {"icon": Icons.store_mall_directory, "text": 'Trabalho'},
-    {"icon": Icons.style, "text": 'Casual'},
-    {"icon": Icons.supervised_user_circle, "text": 'Executivo'},
-    {"icon": Icons.switch_video, "text": 'Esporte'},
-    {"icon": Icons.thumb_up, "text": 'Clássico'},
+    {"icon": Icons.favorite, "text": 'Estilo', 'id': 1},
+    {"icon": Icons.filter_drama, "text": 'Teen', 'id': 2},
+    {"icon": Icons.flight, "text": 'Viagem', 'id': 3},
+    {"icon": Icons.store_mall_directory, "text": 'Trabalho', 'id': 4},
+    {"icon": Icons.style, "text": 'Casual', 'id': 5},
+    {"icon": Icons.supervised_user_circle, "text": 'Executivo', 'id': 6},
+    {"icon": Icons.switch_video, "text": 'Esporte', 'id': 7},
+    {"icon": Icons.thumb_up, "text": 'Clássico', 'id': 8},
   ];
 
   @override
   void initState() {
     super.initState();
 
+    // Inicia a animação
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 300),
+      duration: Duration(milliseconds: 100),
     );
   }
 
@@ -73,13 +83,42 @@ class _RodaCategoriaState extends State<RodaCategoria> with SingleTickerProvider
           turns: Tween(begin: _startDeg, end: _endDeg).animate(_controller),
           child: GestureDetector(
             onTap: () {
-              _controller.reset();
-              _startDeg = _endDeg;
-              _endDeg += (1 / items.length);
+              // _controller.reset();
+              // _startDeg = _endDeg;
+              // _endDeg += (1 / items.length);
 
-              setState(() {
-                _controller.forward();
-              });
+              // setState(() {
+              //   _controller.forward();
+              // });
+            },
+            onHorizontalDragStart: (details) {
+              // Poscição onde começou a arrastar
+            },
+            onHorizontalDragUpdate: (details) {
+              // Atualiza a diferença entre uma posição e outra
+
+              // Verificamos se arrastou para a direita ou para esquerda
+              _swypeDirection = SwypeDirection.right;
+
+              if ((details.globalPosition.dx - _dragInitial) < 0) {
+                _swypeDirection = SwypeDirection.left;
+              }
+            },
+            onHorizontalDragEnd: (details) {
+              // Finial do movimento
+
+              _startDeg = _endDeg;
+              _controller.reset();
+
+              switch (_swypeDirection) {
+                case SwypeDirection.left:
+                  _endDeg -= (1 / items.length);
+
+                  break;
+
+                case SwypeDirection.right:
+                  break;
+              }
             },
             child: Container(
               width: MediaQuery.of(context).size.width,
