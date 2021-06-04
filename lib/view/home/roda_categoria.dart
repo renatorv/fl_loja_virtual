@@ -27,6 +27,9 @@ class _RodaCategoriaState extends State<RodaCategoria> with SingleTickerProvider
 
   SwypeDirection _swypeDirection;
 
+  // Controle do item atual
+  int _currentItem = 0;
+
   // Model (fixo) de item para serem impressos na roda
   final List<Map<String, dynamic>> items = const [
     {"icon": Icons.favorite, "text": 'Estilo', 'id': 1},
@@ -50,6 +53,7 @@ class _RodaCategoriaState extends State<RodaCategoria> with SingleTickerProvider
     );
   }
 
+  // mata a animação
   @override
   void dispose() {
     super.dispose();
@@ -83,16 +87,13 @@ class _RodaCategoriaState extends State<RodaCategoria> with SingleTickerProvider
           turns: Tween(begin: _startDeg, end: _endDeg).animate(_controller),
           child: GestureDetector(
             onTap: () {
-              // _controller.reset();
-              // _startDeg = _endDeg;
-              // _endDeg += (1 / items.length);
-
-              // setState(() {
-              //   _controller.forward();
-              // });
+              // Imprime o model do item atual - item do topo
+              print(items[_currentItem]);
             },
             onHorizontalDragStart: (details) {
               // Poscição onde começou a arrastar
+
+              _dragInitial = details.globalPosition.dx;
             },
             onHorizontalDragUpdate: (details) {
               // Atualiza a diferença entre uma posição e outra
@@ -100,25 +101,49 @@ class _RodaCategoriaState extends State<RodaCategoria> with SingleTickerProvider
               // Verificamos se arrastou para a direita ou para esquerda
               _swypeDirection = SwypeDirection.right;
 
+              // Verificando se o usuário arrastou para a esquerda
+              // se ele for menor que zero ele arrastou para a esquerda
               if ((details.globalPosition.dx - _dragInitial) < 0) {
                 _swypeDirection = SwypeDirection.left;
               }
             },
             onHorizontalDragEnd: (details) {
-              // Finial do movimento
+              // Final do movimento
 
+              // marca a posição inicial da roda com a ultima posição que a animação fez
               _startDeg = _endDeg;
               _controller.reset();
 
               switch (_swypeDirection) {
                 case SwypeDirection.left:
+
+                  // Informa o angulo para girar
                   _endDeg -= (1 / items.length);
 
+                  // Troca o indice do item selecionado - item do topo
+                  _currentItem++;
+                  if (_currentItem > items.length - 1) {
+                    _currentItem = 0;
+                  }
                   break;
 
                 case SwypeDirection.right:
+                  _endDeg += (1 / items.length);
+                  _currentItem--;
+                  if (_currentItem < 0) {
+                    _currentItem = items.length - 1;
+                  }
                   break;
+
+                default:
               }
+
+              _swypeDirection = null;
+
+              // Dispara a animação
+              setState(() {
+                _controller.forward();
+              });
             },
             child: Container(
               width: MediaQuery.of(context).size.width,
@@ -151,10 +176,14 @@ class _RodaCategoriaState extends State<RodaCategoria> with SingleTickerProvider
       ),
     );
 
-    var angle = pi * 2;
+    // Define o fator de angulação de cada item
+    // ou seja, o quanto cada um vai ser angulado
+    var angleFactor = (pi * 2) / items.length;
+    var angle = -angleFactor;
 
     for (Map<String, dynamic> item in items) {
-      angle += (pi * 2) / items.length;
+      // Aplica fator de angulacao
+      angle += angleFactor;
 
       result.add(
         Transform.rotate(
