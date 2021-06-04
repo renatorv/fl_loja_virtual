@@ -21,9 +21,23 @@ class Destaques extends StatelessWidget {
                   ),
                   margin: EdgeInsets.only(left: 20, right: 20),
                   width: MediaQuery.of(context).size.width - 40,
-                  // child: Column(
-                  //   children: [Expanded(child: ClipRRect(),),],
-                  // ),
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: ClipRRect(
+                          child: Stack(
+                            children: [
+                              Image.asset(
+                                'assets/images/produtos/prod-1.jpg',
+                                fit: BoxFit.cover,
+                                alignment: Alignment.center,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             );
