@@ -1,3 +1,4 @@
+import 'package:fl_loja_virtual/view/home/destaques.dart';
 import 'package:fl_loja_virtual/view/home/roda_categoria.dart';
 import 'package:fl_loja_virtual/view/layout.dart';
 import 'package:flutter/material.dart';
@@ -12,19 +13,8 @@ class HomePage extends StatelessWidget {
     var content = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          decoration: BoxDecoration(
-            color: Layout.light(.7),
-            borderRadius: BorderRadius.circular(25),
-          ),
-          margin: EdgeInsets.only(left: 20, right: 20),
-          padding: EdgeInsets.all(18),
-          width: MediaQuery.of(context).size.width,
-          height: 100,
-          child: Text('Promoções'),
-        ),
-        SizedBox(height: 20),
         Expanded(
+          flex: 1,
           child: Container(
             decoration: BoxDecoration(
               color: Layout.light(.7),
@@ -33,8 +23,14 @@ class HomePage extends StatelessWidget {
             margin: EdgeInsets.only(left: 20, right: 20),
             padding: EdgeInsets.all(18),
             width: MediaQuery.of(context).size.width,
-            child: Text('Produtos'),
+            height: 100,
+            child: Text('Promoções'),
           ),
+        ),
+        SizedBox(height: 20),
+        Expanded(
+          flex: 2,
+          child: Destaques(),
         ),
         SizedBox(height: 20),
         Padding(
