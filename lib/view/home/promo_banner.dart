@@ -5,14 +5,9 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 class PromoBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Swiper(
+    var swyper = Swiper(
       itemBuilder: (BuildContext context, int i) {
         return Container(
-          // margin: EdgeInsets.only(
-          //   left: 20,
-          //   right: 20,
-          // ),
-          // width: MediaQuery.of(context).size.width - 40,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(25),
             child: Image.asset(
@@ -41,6 +36,8 @@ class PromoBanner extends StatelessWidget {
       itemHeight: 200,
       //configurações: aula 10 em 50 minutos
     );
+
+    return swyper;
     // return ListView(
     //   physics: PageScrollPhysics(),
     //   scrollDirection: Axis.horizontal,

@@ -67,6 +67,9 @@ class _RodaCategoriaState extends State<RodaCategoria> with SingleTickerProvider
       children: [
         // Faz somente a sombra
         Container(
+          //
+          // Este bloco server somente de sombra
+          //
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.width,
           margin: EdgeInsets.only(top: 10, bottom: 10),
@@ -84,6 +87,9 @@ class _RodaCategoriaState extends State<RodaCategoria> with SingleTickerProvider
         ),
         // Container que será animado
         RotationTransition(
+          //
+          // Est eh o elemnto que realmente eh rotacionado
+          //
           turns: Tween(begin: _startDeg, end: _endDeg).animate(_controller),
           child: GestureDetector(
             onTap: () {
@@ -168,6 +174,9 @@ class _RodaCategoriaState extends State<RodaCategoria> with SingleTickerProvider
 
     result.add(
       ClipRRect(
+        //
+        // Aqui temos a imagem d fundo da tela
+        //
         borderRadius: BorderRadius.circular(MediaQuery.of(context).size.width),
         child: Image.asset(
           'assets/images/bg-catwheel.png',
@@ -187,6 +196,9 @@ class _RodaCategoriaState extends State<RodaCategoria> with SingleTickerProvider
 
       result.add(
         Transform.rotate(
+          //
+          // cada um dos itens da roda
+          //
           angle: angle, // ( pi * 2 => 360 graus)
           child: Container(
             width: MediaQuery.of(context).size.width,
