@@ -1,3 +1,4 @@
+import 'package:fl_loja_virtual/login/login_page.dart';
 import 'package:flutter/material.dart';
 import 'view/home/home_page.dart';
 import 'view/layout.dart';
@@ -28,8 +29,9 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      initialRoute: HomePage.tag,
+      initialRoute: LoginPage.tag,
       routes: {
+        LoginPage.tag: (context) => LoginPage(),
         HomePage.tag: (context) => HomePage(),
       },
     );
