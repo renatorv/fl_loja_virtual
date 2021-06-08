@@ -1,11 +1,12 @@
 import 'package:fl_loja_virtual/login/cadastro_page.dart';
-import 'package:fl_loja_virtual/login/login_recuperar_page.dart';
 import 'package:fl_loja_virtual/view/home/home_page.dart';
 import 'package:fl_loja_virtual/view/layout.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
-  static String tag = '/login-page';
+import 'login_page.dart';
+
+class LoginRecuperarPage extends StatelessWidget {
+  static String tag = '/login-recuperar-page';
 
   @override
   Widget build(BuildContext context) {
@@ -60,23 +61,12 @@ class LoginPage extends StatelessWidget {
                             ),
                           ),
                           SizedBox(height: 20),
-                          TextFormField(
-                            decoration: InputDecoration(
-                              hintText: 'Senha',
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Layout.primary(),
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: 20),
                           Align(
                             alignment: Alignment.centerRight,
                             child: TextButton(
-                              onPressed: () => Navigator.of(context).pushNamed(LoginRecuperarPage.tag),
+                              onPressed: () => Navigator.of(context).pushNamed(LoginPage.tag),
                               child: Text(
-                                'Esqueci minha senha',
+                                'Fazer login',
                                 style: TextStyle(
                                   color: Layout.secondaryDark(),
                                 ),
@@ -88,7 +78,7 @@ class LoginPage extends StatelessWidget {
                             width: double.infinity,
                             child: ElevatedButton(
                               onPressed: () => Navigator.of(context).popAndPushNamed(HomePage.tag),
-                              child: Text('Entrar'),
+                              child: Text('Recuperar senha'),
                               style: ElevatedButton.styleFrom(
                                 primary: Layout.primary(),
                                 onPrimary: Colors.white,
@@ -127,9 +117,5 @@ class LoginPage extends StatelessWidget {
       ),
       backgroundColor: Layout.secondary(),
     );
-    // return Layout.render(
-    //   context,
-    //   Container(),
-    // );
   }
 }
