@@ -82,11 +82,6 @@ class LoginRecuperarPage extends StatelessWidget {
                               style: ElevatedButton.styleFrom(
                                 primary: Layout.primary(),
                                 onPrimary: Colors.white,
-                                // shape: const BeveledRectangleBorder(
-                                //   borderRadius: BorderRadius.all(
-                                //     Radius.circular(6),
-                                //   ),
-                                // ),
                               ),
                             ),
                           ),
