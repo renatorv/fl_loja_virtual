@@ -1,6 +1,7 @@
 import 'package:fl_loja_virtual/login/cadastro_page.dart';
 import 'package:fl_loja_virtual/login/login_page.dart';
 import 'package:fl_loja_virtual/login/login_recuperar_page.dart';
+import 'package:fl_loja_virtual/view/carrinho/carrinho_page.dart';
 import 'package:fl_loja_virtual/view/favoritos/favoritos_page.dart';
 import 'package:fl_loja_virtual/view/perfil/perfil_page.dart';
 import 'package:flutter/material.dart';
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
         HomePage.tag: (context) => HomePage(),
         FavoritosPage.tag: (context) => FavoritosPage(),
         PerfilPage.tag: (context) => PerfilPage(),
+        CarrinhoPage.tag: (context) => CarrinhoPage(),
       },
     );
   }

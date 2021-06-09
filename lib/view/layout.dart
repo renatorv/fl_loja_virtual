@@ -5,6 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'carrinho/carrinho_page.dart';
+
 class Layout {
   static Widget render(
     BuildContext context,
@@ -52,10 +54,13 @@ class Layout {
                       ),
                       Padding(
                         padding: EdgeInsets.only(right: 30),
-                        child: FaIcon(
-                          FontAwesomeIcons.shoppingBag,
-                          color: Layout.primaryLight(),
-                          size: 24,
+                        child: GestureDetector(
+                          onTap: () => Navigator.of(context).pushNamed(CarrinhoPage.tag),
+                          child: FaIcon(
+                            FontAwesomeIcons.shoppingBag,
+                            color: Layout.primaryLight(),
+                            size: 24,
+                          ),
                         ),
                       ),
                     ],
