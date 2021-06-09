@@ -109,6 +109,7 @@ class LoginPage extends StatelessWidget {
                         alignment: Alignment.bottomRight,
                         child: TextButton(
                           onPressed: () => Navigator.of(context).pushNamed(CadastroPage.tag),
+                          //onPressed: () => Navigator.of(context).pushNamed(PerfilPage.tag),
                           child: Text(
                             'Não tem uma conta? Cadastre-se',
                             style: TextStyle(

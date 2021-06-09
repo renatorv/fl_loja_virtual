@@ -38,14 +38,14 @@ class FavoritosPage extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(5),
                   child: Image.network(
-                    'https://picsum.photos/id/${i + 35}/200/300.jpg',
+                    'https://picsum.photos/id/${i + 50}/200/300.jpg',
                     fit: BoxFit.cover,
                   ),
                 ),
               ),
             ),
-            title: Text('Um item'),
-            subtitle: Text('Um subtitulo'),
+            title: Text('Item: $i'),
+            subtitle: Text('Subtítulo do item $i'),
             trailing: IconButton(
               icon: FaIcon(
                 i.isEven ? FontAwesomeIcons.solidHeart : FontAwesomeIcons.heart,
