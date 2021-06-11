@@ -46,7 +46,6 @@ class MyApp extends StatelessWidget {
         PerfilPage.tag: (context) => PerfilPage(),
         CarrinhoPage.tag: (context) => CarrinhoPage(),
         ComprasPage.tag: (context) => ComprasPage(),
-        ComprasDetalhePage.tag: (context) => ComprasDetalhePage(),
       },
     );
   }

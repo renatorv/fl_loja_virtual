@@ -25,7 +25,11 @@ class ComprasPage extends StatelessWidget {
             trailing: IconButton(
               icon: FaIcon(FontAwesomeIcons.clipboardList),
               color: Layout.primary(),
-              onPressed: () => Navigator.of(context).pushNamed(ComprasDetalhePage.tag),
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => ComprasDetalhePage(123),
+                ),
+              ),
             ),
           ),
         );
