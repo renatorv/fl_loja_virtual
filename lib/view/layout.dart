@@ -1,4 +1,5 @@
 import 'package:fl_loja_virtual/login/login_page.dart';
+import 'package:fl_loja_virtual/view/compras/compras-page.dart';
 import 'package:fl_loja_virtual/view/favoritos/favoritos_page.dart';
 import 'package:fl_loja_virtual/view/home/home_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -104,6 +105,9 @@ class Layout {
           switch (i) {
             case 0:
               Navigator.of(context).pushNamed(HomePage.tag);
+              break;
+            case 1:
+              Navigator.of(context).pushNamed(ComprasPage.tag);
               break;
             case 2:
               Navigator.of(context).pushNamed(FavoritosPage.tag);

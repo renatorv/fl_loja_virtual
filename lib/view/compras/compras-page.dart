@@ -1,3 +1,4 @@
+import 'package:fl_loja_virtual/view/compras/compras_detalhe_page.dart';
 import 'package:fl_loja_virtual/view/layout.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -21,7 +22,11 @@ class ComprasPage extends StatelessWidget {
             isThreeLine: true,
             title: Text('#125 - R\$ 125,80'),
             subtitle: Text('Em 15/05/2020 às 20:54 \nEm análise'),
-            trailing: IconButton(icon: FaIcon(FontAwesomeIcons.clipboardList), color: Layout.primary(), onPressed: () => null),
+            trailing: IconButton(
+              icon: FaIcon(FontAwesomeIcons.clipboardList),
+              color: Layout.primary(),
+              onPressed: () => Navigator.of(context).pushNamed(ComprasDetalhePage.tag),
+            ),
           ),
         );
       },
@@ -41,6 +46,7 @@ class ComprasPage extends StatelessWidget {
                   ),
             ),
           ),
+          Expanded(child: content),
         ],
       ),
       bottomItemSelected: 1,
