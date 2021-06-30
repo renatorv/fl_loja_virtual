@@ -1,12 +1,12 @@
-import 'package:fl_loja_virtual/login/cadastro_page.dart';
 import 'package:fl_loja_virtual/view/home/home_page.dart';
 import 'package:fl_loja_virtual/view/layout.dart';
 import 'package:flutter/material.dart';
 
-import 'login_page.dart';
+import 'cadastro_page.dart';
+import 'login_recuperar_page.dart';
 
-class LoginRecuperarPage extends StatelessWidget {
-  static String tag = '/login-recuperar-page';
+class LoginPage extends StatelessWidget {
+  static String tag = '/login-page';
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,8 @@ class LoginRecuperarPage extends StatelessWidget {
           Column(
             children: [
               Padding(
-                padding: EdgeInsets.only(top: 100, left: 40, right: 40, bottom: 20),
+                padding:
+                    EdgeInsets.only(top: 100, left: 40, right: 40, bottom: 20),
                 child: Image.asset('assets/images/logo-sem-fundo.png'),
               ),
               Expanded(
@@ -61,12 +62,24 @@ class LoginRecuperarPage extends StatelessWidget {
                             ),
                           ),
                           SizedBox(height: 20),
+                          TextFormField(
+                            decoration: InputDecoration(
+                              hintText: 'Senha',
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Layout.primary(),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 20),
                           Align(
                             alignment: Alignment.centerRight,
                             child: TextButton(
-                              onPressed: () => Navigator.of(context).pushNamed(LoginPage.tag),
+                              onPressed: () => Navigator.of(context)
+                                  .pushNamed(LoginRecuperarPage.tag),
                               child: Text(
-                                'Fazer login',
+                                'Esqueci minha senha',
                                 style: TextStyle(
                                   color: Layout.secondaryDark(),
                                 ),
@@ -77,11 +90,17 @@ class LoginRecuperarPage extends StatelessWidget {
                             height: 42,
                             width: double.infinity,
                             child: ElevatedButton(
-                              onPressed: () => Navigator.of(context).popAndPushNamed(HomePage.tag),
-                              child: Text('Recuperar senha'),
+                              onPressed: () => Navigator.of(context)
+                                  .popAndPushNamed(HomePage.tag),
+                              child: Text('Entrar'),
                               style: ElevatedButton.styleFrom(
                                 primary: Layout.primary(),
                                 onPrimary: Colors.white,
+                                // shape: const BeveledRectangleBorder(
+                                //   borderRadius: BorderRadius.all(
+                                //     Radius.circular(6),
+                                //   ),
+                                // ),
                               ),
                             ),
                           ),
@@ -93,7 +112,9 @@ class LoginRecuperarPage extends StatelessWidget {
                       child: Align(
                         alignment: Alignment.bottomRight,
                         child: TextButton(
-                          onPressed: () => Navigator.of(context).pushNamed(CadastroPage.tag),
+                          onPressed: () =>
+                              Navigator.of(context).pushNamed(CadastroPage.tag),
+                          //onPressed: () => Navigator.of(context).pushNamed(PerfilPage.tag),
                           child: Text(
                             'Não tem uma conta? Cadastre-se',
                             style: TextStyle(
@@ -112,5 +133,9 @@ class LoginRecuperarPage extends StatelessWidget {
       ),
       backgroundColor: Layout.secondary(),
     );
+    // return Layout.render(
+    //   context,
+    //   Container(),
+    // );
   }
 }

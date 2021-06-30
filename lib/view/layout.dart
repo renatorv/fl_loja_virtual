@@ -1,4 +1,3 @@
-import 'package:fl_loja_virtual/login/login_page.dart';
 import 'package:fl_loja_virtual/view/compras/compras-page.dart';
 import 'package:fl_loja_virtual/view/favoritos/favoritos_page.dart';
 import 'package:fl_loja_virtual/view/home/home_page.dart';
@@ -7,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'carrinho/carrinho_page.dart';
+import 'login/login_page.dart';
 
 class Layout {
   static Widget render(
@@ -56,7 +56,8 @@ class Layout {
                       Padding(
                         padding: EdgeInsets.only(right: 30),
                         child: GestureDetector(
-                          onTap: () => Navigator.of(context).pushNamed(CarrinhoPage.tag),
+                          onTap: () =>
+                              Navigator.of(context).pushNamed(CarrinhoPage.tag),
                           child: FaIcon(
                             FontAwesomeIcons.shoppingBag,
                             color: Layout.primaryLight(),
@@ -97,7 +98,9 @@ class Layout {
           ),
         ],
         currentIndex: bottomItemSelected ?? 0,
-        selectedItemColor: (bottomItemSelected == null) ? Layout.dark(.3) : Layout.primaryLight(),
+        selectedItemColor: (bottomItemSelected == null)
+            ? Layout.dark(.3)
+            : Layout.primaryLight(),
         unselectedItemColor: Layout.dark(.3),
         backgroundColor: Layout.light(),
         type: BottomNavigationBarType.fixed,
@@ -120,17 +123,26 @@ class Layout {
     );
   }
 
-  static Color primary([double opacity = 1]) => Color(0xff195738).withOpacity(opacity);
-  static Color primaryLight([double opacity = 1]) => Color(0xff007d40).withOpacity(opacity);
-  static Color primaryDark([double opacity = 1]) => Color(0xff123D27).withOpacity(opacity);
+  static Color primary([double opacity = 1]) =>
+      Color(0xff195738).withOpacity(opacity);
+  static Color primaryLight([double opacity = 1]) =>
+      Color(0xff007d40).withOpacity(opacity);
+  static Color primaryDark([double opacity = 1]) =>
+      Color(0xff123D27).withOpacity(opacity);
 
-  static Color secondary([double opacity = 1]) => Color(0xffddc199).withOpacity(opacity);
-  static Color secondaryLight([double opacity = 1]) => Color(0xffE0CF9D).withOpacity(opacity);
-  static Color secondaryDark([double opacity = 1]) => Color(0xffce9150).withOpacity(opacity);
-  static Color secondaryHight([double opacity = 1]) => Color(0xffFDAC25).withOpacity(opacity);
+  static Color secondary([double opacity = 1]) =>
+      Color(0xffddc199).withOpacity(opacity);
+  static Color secondaryLight([double opacity = 1]) =>
+      Color(0xffE0CF9D).withOpacity(opacity);
+  static Color secondaryDark([double opacity = 1]) =>
+      Color(0xffce9150).withOpacity(opacity);
+  static Color secondaryHight([double opacity = 1]) =>
+      Color(0xffFDAC25).withOpacity(opacity);
 
-  static Color light([double opacity = 1]) => Color(0xfff0ece1).withOpacity(opacity);
-  static Color dark([double opacity = 1]) => Color(0xff000000).withOpacity(opacity);
+  static Color light([double opacity = 1]) =>
+      Color(0xfff0ece1).withOpacity(opacity);
+  static Color dark([double opacity = 1]) =>
+      Color(0xff000000).withOpacity(opacity);
 }
 
 // Color(0xffE0CF9D);

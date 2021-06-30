@@ -1,7 +1,8 @@
-import 'package:fl_loja_virtual/login/login_page.dart';
 import 'package:fl_loja_virtual/view/home/home_page.dart';
 import 'package:fl_loja_virtual/view/layout.dart';
 import 'package:flutter/material.dart';
+
+import 'login_page.dart';
 
 class CadastroPage extends StatelessWidget {
   static String tag = '/cadastro-page';
@@ -24,7 +25,8 @@ class CadastroPage extends StatelessWidget {
           Column(
             children: [
               Padding(
-                padding: EdgeInsets.only(top: 100, left: 40, right: 40, bottom: 20),
+                padding:
+                    EdgeInsets.only(top: 100, left: 40, right: 40, bottom: 20),
                 child: Image.asset('assets/images/logo-sem-fundo.png'),
               ),
               Expanded(
@@ -96,7 +98,8 @@ class CadastroPage extends StatelessWidget {
                             height: 42,
                             width: double.infinity,
                             child: ElevatedButton(
-                              onPressed: () => Navigator.of(context).popAndPushNamed(HomePage.tag),
+                              onPressed: () => Navigator.of(context)
+                                  .popAndPushNamed(HomePage.tag),
                               child: Text('Criar conta'),
                               style: ElevatedButton.styleFrom(
                                 primary: Layout.primary(),
@@ -117,7 +120,8 @@ class CadastroPage extends StatelessWidget {
                       child: Align(
                         alignment: Alignment.bottomRight,
                         child: TextButton(
-                          onPressed: () => Navigator.of(context).pushNamed(LoginPage.tag),
+                          onPressed: () =>
+                              Navigator.of(context).pushNamed(LoginPage.tag),
                           child: Text(
                             'Fazer login',
                             style: TextStyle(
