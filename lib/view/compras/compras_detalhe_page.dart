@@ -49,7 +49,8 @@ class ComprasDetalhePage extends StatelessWidget {
                     dense: true,
                     leading: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
-                      child: Image.network('https://picsum.photos/id/${i + 50}/200/300.jpg'),
+                      child: Image.network(
+                          'https://picsum.photos/id/${i + 50}/200/300.jpg'),
                     ),
                     title: Text('Óculos Lindão'),
                     subtitle: Text('3 X R\$ 15,00'),

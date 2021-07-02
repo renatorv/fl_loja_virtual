@@ -89,12 +89,14 @@ class CarrinhoPage extends StatelessWidget {
                               children: [
                                 GestureDetector(
                                   onTap: () => print('Esquerda'),
-                                  child: FaIcon(FontAwesomeIcons.chevronLeft, size: 16),
+                                  child: FaIcon(FontAwesomeIcons.chevronLeft,
+                                      size: 16),
                                 ),
                                 Text('1', style: TextStyle(fontSize: 18)),
                                 GestureDetector(
                                   onTap: () => print('Direita'),
-                                  child: FaIcon(FontAwesomeIcons.chevronRight, size: 16),
+                                  child: FaIcon(FontAwesomeIcons.chevronRight,
+                                      size: 16),
                                 ),
                               ],
                             ),
@@ -112,7 +114,8 @@ class CarrinhoPage extends StatelessWidget {
         // Resumo
         Container(
           width: double.infinity,
-          margin: const EdgeInsets.only(top: 10, left: 10, right: 10, bottom: 10),
+          margin:
+              const EdgeInsets.only(top: 10, left: 10, right: 10, bottom: 10),
           padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -151,7 +154,7 @@ class CarrinhoPage extends StatelessWidget {
                                   color: Layout.primaryDark(),
                                 ),
                                 Text(
-                                  'Selecione',
+                                  'Selecione o Frete',
                                   style: TextStyle(color: Colors.red),
                                   textAlign: TextAlign.center,
                                 ),

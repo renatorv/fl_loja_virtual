@@ -123,6 +123,22 @@ class Layout {
     );
   }
 
+  // Model (fixo) de item para serem impressos na roda
+  static List<Map<String, dynamic>> categorias = const [
+    {"icon": Icons.favorite, "text": 'Estilo', 'id': 1},
+    {"icon": Icons.filter_drama, "text": 'Teen', 'id': 2},
+    {"icon": Icons.flight, "text": 'Viagem', 'id': 3},
+    {"icon": Icons.store_mall_directory, "text": 'Trabalho', 'id': 4},
+    {"icon": Icons.style, "text": 'Casual', 'id': 5},
+    {"icon": Icons.supervised_user_circle, "text": 'Executivo', 'id': 6},
+    {"icon": Icons.switch_video, "text": 'Esporte', 'id': 7},
+    {"icon": Icons.thumb_up, "text": 'Clássico', 'id': 8},
+  ];
+
+  static Map<String, dynamic> categoriaPorId(int id) {
+    return Layout.categorias.firstWhere((e) => e['id'] == id);
+  }
+
   static Color primary([double opacity = 1]) =>
       Color(0xff195738).withOpacity(opacity);
   static Color primaryLight([double opacity = 1]) =>

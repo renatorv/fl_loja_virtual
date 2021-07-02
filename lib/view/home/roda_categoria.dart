@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'dart:ui';
+import 'package:fl_loja_virtual/view/produto/categoria_page.dart';
 import 'package:flutter/material.dart';
 import '../layout.dart';
 
@@ -11,7 +12,8 @@ class RodaCategoria extends StatefulWidget {
   _RodaCategoriaState createState() => _RodaCategoriaState();
 }
 
-class _RodaCategoriaState extends State<RodaCategoria> with SingleTickerProviderStateMixin {
+class _RodaCategoriaState extends State<RodaCategoria>
+    with SingleTickerProviderStateMixin {
   // Controller da animação
   AnimationController _controller;
 
@@ -30,17 +32,17 @@ class _RodaCategoriaState extends State<RodaCategoria> with SingleTickerProvider
   // Controle do item atual
   int _currentItem = 0;
 
-  // Model (fixo) de item para serem impressos na roda
-  final List<Map<String, dynamic>> items = const [
-    {"icon": Icons.favorite, "text": 'Estilo', 'id': 1},
-    {"icon": Icons.filter_drama, "text": 'Teen', 'id': 2},
-    {"icon": Icons.flight, "text": 'Viagem', 'id': 3},
-    {"icon": Icons.store_mall_directory, "text": 'Trabalho', 'id': 4},
-    {"icon": Icons.style, "text": 'Casual', 'id': 5},
-    {"icon": Icons.supervised_user_circle, "text": 'Executivo', 'id': 6},
-    {"icon": Icons.switch_video, "text": 'Esporte', 'id': 7},
-    {"icon": Icons.thumb_up, "text": 'Clássico', 'id': 8},
-  ];
+  // // Model (fixo) de item para serem impressos na roda
+  // final List<Map<String, dynamic>> items = const [
+  //   {"icon": Icons.favorite, "text": 'Estilo', 'id': 1},
+  //   {"icon": Icons.filter_drama, "text": 'Teen', 'id': 2},
+  //   {"icon": Icons.flight, "text": 'Viagem', 'id': 3},
+  //   {"icon": Icons.store_mall_directory, "text": 'Trabalho', 'id': 4},
+  //   {"icon": Icons.style, "text": 'Casual', 'id': 5},
+  //   {"icon": Icons.supervised_user_circle, "text": 'Executivo', 'id': 6},
+  //   {"icon": Icons.switch_video, "text": 'Esporte', 'id': 7},
+  //   {"icon": Icons.thumb_up, "text": 'Clássico', 'id': 8},
+  // ];
 
   @override
   void initState() {
@@ -94,7 +96,14 @@ class _RodaCategoriaState extends State<RodaCategoria> with SingleTickerProvider
           child: GestureDetector(
             onTap: () {
               // Imprime o model do item atual - item do topo
-              print(items[_currentItem]);
+              // print(Layout.categorias[_currentItem]);
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => CategoriaPage(
+                    Layout.categorias[_currentItem]['id'],
+                  ),
+                ),
+              );
             },
             onHorizontalDragStart: (details) {
               // Poscição onde começou a arrastar
@@ -124,20 +133,20 @@ class _RodaCategoriaState extends State<RodaCategoria> with SingleTickerProvider
                 case SwypeDirection.left:
 
                   // Informa o angulo para girar
-                  _endDeg -= (1 / items.length);
+                  _endDeg -= (1 / Layout.categorias.length);
 
                   // Troca o indice do item selecionado - item do topo
                   _currentItem++;
-                  if (_currentItem > items.length - 1) {
+                  if (_currentItem > Layout.categorias.length - 1) {
                     _currentItem = 0;
                   }
                   break;
 
                 case SwypeDirection.right:
-                  _endDeg += (1 / items.length);
+                  _endDeg += (1 / Layout.categorias.length);
                   _currentItem--;
                   if (_currentItem < 0) {
-                    _currentItem = items.length - 1;
+                    _currentItem = Layout.categorias.length - 1;
                   }
                   break;
 
@@ -187,10 +196,10 @@ class _RodaCategoriaState extends State<RodaCategoria> with SingleTickerProvider
 
     // Define o fator de angulação de cada item
     // ou seja, o quanto cada um vai ser angulado
-    var angleFactor = (pi * 2) / items.length;
+    var angleFactor = (pi * 2) / Layout.categorias.length;
     var angle = -angleFactor;
 
-    for (Map<String, dynamic> item in items) {
+    for (Map<String, dynamic> item in Layout.categorias) {
       // Aplica fator de angulacao
       angle += angleFactor;
 

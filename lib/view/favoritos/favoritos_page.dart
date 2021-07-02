@@ -30,7 +30,7 @@ class FavoritosPage extends StatelessWidget {
                     blurRadius: 5,
                     color: Layout.dark(.3),
                     offset: Offset(0, 3),
-                  )
+                  ),
                 ],
               ),
               child: Padding(
@@ -64,7 +64,7 @@ class FavoritosPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.only(left: 20),
+            padding: EdgeInsets.only(left: 20, bottom: 0),
             child: Text(
               'Favoritos',
               style: Theme.of(context).textTheme.headline6.copyWith(
