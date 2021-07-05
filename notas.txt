@@ -5,4 +5,4 @@ minimizar código: ctrl+k+0
 maximizar código: ctrl+k+ctrl+j
 
 
-Aula 20 => 11 minutos
+inicio aula 22

@@ -70,7 +70,7 @@ class _RodaCategoriaState extends State<RodaCategoria>
         // Faz somente a sombra
         Container(
           //
-          // Este bloco server somente de sombra
+          // Este bloco serve somente de sombra
           //
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.width,
