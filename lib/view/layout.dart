@@ -1,9 +1,11 @@
+import 'package:fl_loja_virtual/controller/user_controller.dart';
 import 'package:fl_loja_virtual/view/compras/compras-page.dart';
 import 'package:fl_loja_virtual/view/favoritos/favoritos_page.dart';
 import 'package:fl_loja_virtual/view/home/home_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 import 'carrinho/carrinho_page.dart';
 import 'login/login_page.dart';
@@ -15,6 +17,10 @@ class Layout {
     Widget floatingActionButton,
     int bottomItemSelected,
   }) {
+    UserController user = Provider.of<UserController>(context);
+
+    print(user.teste);
+
     return Scaffold(
       body: SafeArea(
         child: Stack(
