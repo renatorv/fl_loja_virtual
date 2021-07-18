@@ -3,6 +3,7 @@ import 'package:fl_loja_virtual/view/home/home_page.dart';
 import 'package:fl_loja_virtual/view/layout.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:toast/toast.dart';
 
 import 'cadastro_page.dart';
 import 'login_recuperar_page.dart';
@@ -15,6 +16,7 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var userController = Provider.of<UserController>(context);
     return Scaffold(
       body: Form(
         key: _form,
@@ -91,7 +93,7 @@ class LoginPage extends StatelessWidget {
                               obscureText: true,
                               validator: (value) {
                                 if (value.isEmpty) {
-                                  return 'Campo obrigatório';
+                                  return 'Informe a senha';
                                 }
                                 return null;
                               },
@@ -121,17 +123,26 @@ class LoginPage extends StatelessWidget {
                                   if (_form.currentState.validate()) {
                                     _form.currentState.save();
 
-                                    var userController =
-                                        Provider.of<UserController>(context);
-
                                     String error = await userController
                                         .entrarPorEmailSenha(
                                       email: _data['email'],
                                       senha: _data['senha'],
                                     );
 
-                                    // Navigator.of(context)
-                                    //     .pushReplacementNamed(HomePage.tag);
+                                    if (error != null) {
+                                      Toast.show(
+                                        error,
+                                        context,
+                                        duration: Toast.LENGTH_LONG,
+                                        gravity: Toast.BOTTOM,
+                                      );
+                                    } else {
+                                      // Mata a navegação anterior e vai para a HomePage
+                                      Navigator.of(context)
+                                          .popUntil((route) => route.isFirst);
+                                      Navigator.of(context)
+                                          .pushReplacementNamed(HomePage.tag);
+                                    }
                                   }
                                 },
                                 child: Text('Entrar'),
@@ -177,6 +188,3 @@ class LoginPage extends StatelessWidget {
     // );
   }
 }
-
-
-aula 27 aos 10 minutos

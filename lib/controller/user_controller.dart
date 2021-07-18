@@ -27,6 +27,36 @@ class UserController {
   Future<String> entrarPorEmailSenha({String email, String senha}) async {
     String msg;
 
+    try {
+      var auth = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: senha,
+      );
+
+      setUser(auth.user);
+    } catch (e) {
+      msg = 'Erro desconhecido, tente novamente';
+      if (e.code != null) {
+        switch (e.code) {
+          case 'invalid-email':
+            msg = 'Email ou senha inválido.';
+            break;
+
+          case 'user-disabled':
+            msg = 'Usuário não habilitado a acessar o sistema.';
+            break;
+
+          case 'user-not-found':
+            msg = 'Usuário não encontrado.';
+            break;
+
+          case 'wrong-password':
+            msg = 'Email ou senha inválido.';
+            break;
+        }
+      }
+    }
+
     return msg;
   }
 
