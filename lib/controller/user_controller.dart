@@ -24,6 +24,12 @@ class UserController {
     }
   }
 
+  Future<String> entrarPorEmailSenha({String email, String senha}) async {
+    String msg;
+
+    return msg;
+  }
+
   Future<String> criarContaPorEmailSenha(
       String nome, String email, String senha) async {
     String msg;
