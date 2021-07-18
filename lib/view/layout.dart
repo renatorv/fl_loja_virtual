@@ -17,9 +17,7 @@ class Layout {
     Widget floatingActionButton,
     int bottomItemSelected,
   }) {
-    UserController user = Provider.of<UserController>(context);
-
-    print(user.teste);
+    var user = Provider.of<UserController>(context);
 
     return Scaffold(
       body: SafeArea(
@@ -122,7 +120,12 @@ class Layout {
               Navigator.of(context).pushNamed(FavoritosPage.tag);
               break;
             case 3:
-              Navigator.of(context).pushNamed(LoginPage.tag);
+              // Desloga usuário
+              user.signOut();
+
+              // Navega para a página de login
+              Navigator.of(context).popUntil((route) => route.isFirst);
+              Navigator.of(context).popAndPushNamed(LoginPage.tag);
           }
         },
       ),

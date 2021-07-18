@@ -1,7 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fl_loja_virtual/controller/user_controller.dart';
 import 'package:fl_loja_virtual/view/home/home_page.dart';
 import 'package:fl_loja_virtual/view/layout.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
 
 import 'login_page.dart';
@@ -30,6 +31,8 @@ class CadastroPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var userController = Provider.of<UserController>(context);
+
     return Scaffold(
       key: _scafold,
       body: Form(
@@ -167,7 +170,36 @@ class CadastroPage extends StatelessWidget {
                               height: 42,
                               width: double.infinity,
                               child: ElevatedButton(
-                                onPressed: () => criarConta(context),
+                                onPressed: () async {
+                                  if (_form.currentState.validate()) {
+                                    _form.currentState.save();
+                                  }
+
+                                  String error = await userController
+                                      .criarContaPorEmailSenha(
+                                    user.nome,
+                                    user.email,
+                                    user.senha,
+                                  );
+
+                                  if (error != null) {
+                                    Toast.show(
+                                      error,
+                                      context,
+                                      duration: Toast.LENGTH_LONG,
+                                      gravity: Toast.BOTTOM,
+                                    );
+                                    return;
+                                  }
+                                  //
+                                  // Se até aqui não deu nenhum erro
+                                  // é pq deu tudo certo e o login já está salvo no UserController
+                                  // Redireciona para a página inicial
+                                  Navigator.of(context)
+                                      .popUntil((route) => route.isFirst);
+                                  Navigator.of(context)
+                                      .pushReplacementNamed(HomePage.tag);
+                                },
                                 child: Text('Criar conta'),
                                 style: ElevatedButton.styleFrom(
                                   primary: Layout.primary(),
@@ -206,43 +238,50 @@ class CadastroPage extends StatelessWidget {
     );
   }
 
-  criarConta(BuildContext context) async {
-    if (_form.currentState.validate()) {
-      _form.currentState.save();
+  // criarConta(BuildContext context) async {
+  //   if (_form.currentState.validate()) {
+  //     _form.currentState.save();
 
-      try {
-        // Criamos o usuário no Firebase
-        var auth = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: user.email,
-          password: user.senha,
-        );
+  //     // Toast.show(
+  //     //   msg,
+  //     //   context,
+  //     //   duration: Toast.LENGTH_LONG,
+  //     //   gravity: Toast.BOTTOM,
+  //     // );
 
-        // Adicionamos a ele o nome de exibição
-        await auth.user.updateDisplayName(user.nome);
+  //     // try {
+  //     //   // Criamos o usuário no Firebase
+  //     //   var auth = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+  //     //     email: user.email,
+  //     //     password: user.senha,
+  //     //   );
 
-        await auth.user.sendEmailVerification();
+  //     //   // Adicionamos a ele o nome de exibição
+  //     //   await auth.user.updateDisplayName(user.nome);
 
-        // Navega para a próxima
-        //Navigator.of(context).pushNamed(HomePage.tag);
-      } catch (e) {
-        if (e.code != null) {
-          String msg = 'Erro desconhecido, tente novamente.';
-          switch (e.code) {
-            case 'invalid-email':
-              msg = 'E-mail inválido.';
-              break;
-            case 'email-already-in-use':
-              msg = 'E-mail já cadastrado.';
-              break;
-          }
-          Toast.show(
-            msg,
-            context,
-            duration: Toast.LENGTH_LONG,
-            gravity: Toast.BOTTOM,
-          );
-        }
-      }
-    }
-  }
+  //     //   await auth.user.sendEmailVerification();
+
+  //     //   // Navega para a próxima
+  //     //   //Navigator.of(context).pushNamed(HomePage.tag);
+  //     // } catch (e) {
+  //     //   if (e.code != null) {
+  //     //     String msg = 'Erro desconhecido, tente novamente.';
+  //     //     switch (e.code) {
+  //     //       case 'invalid-email':
+  //     //         msg = 'E-mail inválido.';
+  //     //         break;
+  //     //       case 'email-already-in-use':
+  //     //         msg = 'E-mail já cadastrado.';
+  //     //         break;
+  //     //     }
+  //     //     Toast.show(
+  //     //       msg,
+  //     //       context,
+  //     //       duration: Toast.LENGTH_LONG,
+  //     //       gravity: Toast.BOTTOM,
+  //     //     );
+  //     //   }
+  //     // }
+  //   }
+  // }
 }

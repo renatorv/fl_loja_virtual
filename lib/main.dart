@@ -6,6 +6,7 @@ import 'package:fl_loja_virtual/view/favoritos/favoritos_page.dart';
 import 'package:fl_loja_virtual/view/login/cadastro_page.dart';
 import 'package:fl_loja_virtual/view/login/login_page.dart';
 import 'package:fl_loja_virtual/view/login/login_recuperar_page.dart';
+import 'package:fl_loja_virtual/view/login/splash_page.dart';
 import 'package:fl_loja_virtual/view/perfil/perfil_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -44,8 +45,9 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        initialRoute: LoginPage.tag,
+        initialRoute: SplashPage.tag,
         routes: {
+          SplashPage.tag: (context) => SplashPage(),
           LoginPage.tag: (context) => LoginPage(),
           LoginRecuperarPage.tag: (context) => LoginRecuperarPage(),
           CadastroPage.tag: (context) => CadastroPage(),
